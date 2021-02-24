@@ -1,20 +1,22 @@
+import { ActionType } from "../action-types";
+import { ActionUnion } from "../actions";
 interface RepoState {
   loading: boolean;
   error: string | null;
   data: string[];
 }
 
-const reducer = (state: RepoState, action: any): RepoState => {
+const reducer = (state: RepoState, action: ActionUnion): RepoState => {
   switch (action.type) {
-    case 'search_repo':
+    case ActionType.SEARCH_REPO:
       return { loading: true, error: null, data: [] };
-    case 'search_repo_success':
+    case ActionType.SEARCH_REPO_SUCCESS:
       return { loading: false, error: null, data: action.payload };
-    case 'search_repo_error':
-      return {loading: false, error: action.payload, data: []}
+    case ActionType.SEARCH_REPO_ERROR:
+      return { loading: false, error: action.payload, data: [] };
     default:
       return state;
   }
-}
+};
 
 export default reducer;
