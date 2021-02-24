@@ -6,7 +6,16 @@ interface RepoState {
   data: string[];
 }
 
-const reducer = (state: RepoState, action: ActionUnion): RepoState => {
+const initialState = {
+  loading: false,
+  error: null,
+  data: [],
+};
+
+const reducer = (
+  state: RepoState = initialState,
+  action: ActionUnion
+): RepoState => {
   switch (action.type) {
     case ActionType.SEARCH_REPO:
       return { loading: true, error: null, data: [] };
